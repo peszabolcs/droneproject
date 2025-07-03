@@ -220,9 +220,115 @@ html {
   backdrop-filter: blur(20px) saturate(180%);
 }
 
-/* Responsive video */
+/* Mobile Responsive Optimizations */
 @media (max-width: 768px) {
   .hero-video {
     object-position: center;
+  }
+  
+  /* Mobile typography */
+  .mobile-title {
+    font-size: 3rem !important;
+    line-height: 1.1 !important;
+  }
+  
+  .mobile-subtitle {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .mobile-text {
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Mobile spacing */
+  .mobile-section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  .mobile-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Mobile cards */
+  .mobile-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Mobile buttons */
+  .mobile-btn {
+    padding: 0.875rem 1.5rem !important;
+    font-size: 1rem !important;
+    margin: 0.5rem !important;
+  }
+  
+  /* Mobile grid adjustments */
+  .mobile-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Mobile stats */
+  .mobile-stat {
+    font-size: 2.5rem !important;
+  }
+  
+  /* Mobile form */
+  .mobile-form {
+    padding: 1.5rem !important;
+  }
+  
+  /* Mobile floating elements - hide on mobile */
+  .float {
+    display: none;
+  }
+  
+  /* Reduce particle effects on mobile */
+  .particle {
+    display: none;
+  }
+  
+  /* Mobile glassmorphism */
+  .glass {
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Mobile image scaling */
+  .mobile-image {
+    max-height: 250px !important;
+  }
+  
+  /* Mobile contact section */
+  .mobile-contact-title {
+    font-size: 2.75rem !important;
+    line-height: 1.1 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile screens */
+  .mobile-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .mobile-subtitle {
+    font-size: 2rem !important;
+  }
+  
+  .mobile-contact-title {
+    font-size: 2.25rem !important;
+  }
+  
+  .mobile-stat {
+    font-size: 2rem !important;
+  }
+  
+  .mobile-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
 }

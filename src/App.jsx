@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import techImage from './assets/tech.png';
-import statsImage from './assets/BA.jpg';
-import contactImage from './assets/contact.jpg';
-import droneVideo from './assets/video.mp4';
+import techImage from "./assets/tech.png";
+import statsImage from "./assets/BA.jpg";
+import contactImage from "./assets/contact.jpg";
+import droneVideo from "./assets/video.mp4";
 
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -123,10 +123,10 @@ function App() {
         >
           <source src={droneVideo} type="video/mp4" />
         </video>
-        
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-dark/90 via-primary/20 to-secondary/30" />
-        
+
         {/* Parallax background layers */}
         <div
           className="absolute inset-0 opacity-20"
@@ -145,15 +145,15 @@ function App() {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <h1 className="text-7xl md:text-9xl font-black mb-8 leading-tight">
+            <h1 className="text-7xl md:text-9xl mobile-title font-black mb-8 leading-tight">
               <span className="gradient-text glow-text">EyeSky</span>
               <br />
-              <span className="text-4xl md:text-6xl font-light text-gray-300">
+              <span className="text-4xl md:text-6xl mobile-subtitle font-light text-gray-300">
                 Autonomous Aircraft Inspection
               </span>
             </h1>
 
-            <p className="text-2xl md:text-3xl text-gray-300 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
+            <p className="text-2xl md:text-3xl mobile-text text-gray-300 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
               Revolutionary AI-powered drone technology that transforms aviation
               safety through
               <span className="gradient-text font-semibold">
@@ -163,10 +163,10 @@ function App() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="morph-btn glass px-12 py-6 rounded-2xl font-bold text-xl hover:scale-105 transition-all duration-300">
+              <button className="morph-btn glass px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:scale-105 transition-all duration-300">
                 <span className="relative z-10">Discover EyeSky</span>
               </button>
-              <button className="morph-btn border-2 border-white/30 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white/10 transition-all duration-300">
+              <button className="morph-btn border-2 border-white/30 px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:bg-white/10 transition-all duration-300">
                 Watch Demo
               </button>
             </div>
@@ -187,24 +187,24 @@ function App() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
           <div className="pulse">
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-bounce" />
             </div>
           </div>
           <p className="text-sm mt-2 text-white/50">Scroll to explore</p>
-        </div>
+        </div> */}
       </section>
 
       {/* Mission Section */}
-      <section className="py-32 bg-gradient-to-b from-dark to-gray-900 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-32 mobile-section bg-gradient-to-b from-dark to-gray-900 relative">
+        <div className="max-w-7xl mx-auto px-6 mobile-container">
           <div className="text-center mb-20">
-            <h2 className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text">
+            <h2 className="text-reveal text-6xl md:text-7xl mobile-subtitle font-bold mb-8 gradient-text">
               Our Mission
             </h2>
-            <p className="text-reveal text-xl md:text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
+            <p className="text-reveal text-xl md:text-2xl mobile-text text-gray-300 max-w-5xl mx-auto leading-relaxed">
               Since 2019, we've been revolutionizing aviation safety through
               cutting-edge autonomous drone technology. Our mission is to
               enhance operational efficiency while maintaining the highest
@@ -212,7 +212,7 @@ function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 mobile-grid gap-8">
             {[
               {
                 year: "2019",
@@ -236,7 +236,7 @@ function App() {
               },
             ].map((item, index) => (
               <div key={index} className="text-reveal hover-3d">
-                <div className="glass p-8 rounded-3xl text-center h-full hover:bg-white/5 transition-all duration-500">
+                <div className="glass p-8 mobile-card rounded-3xl text-center h-full hover:bg-white/5 transition-all duration-500">
                   <h3 className="text-4xl font-bold gradient-text mb-4">
                     {item.year}
                   </h3>
@@ -252,10 +252,13 @@ function App() {
       </section>
 
       {/* Technology Section */}
-      <section className="py-32 bg-gradient-to-b from-gray-900 to-dark relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-32 mobile-section bg-gradient-to-b from-gray-900 to-dark relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mobile-container">
           <div className="text-center mb-20">
-            <h2 className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text leading-tight" style={{lineHeight: '1.1'}}>
+            <h2
+              className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text leading-tight"
+              style={{ lineHeight: "1.1" }}
+            >
               Cutting-Edge Technology
             </h2>
             <p className="text-reveal text-xl text-gray-300 max-w-4xl mx-auto">
@@ -264,26 +267,30 @@ function App() {
               unparalleled inspection accuracy.
             </p>
           </div>
-          
+
           {/* Technology Showcase Image */}
           <div className="text-reveal mb-16">
             <div className="relative max-w-4xl mx-auto">
               <div className="glass rounded-3xl p-2 hover-3d image-float">
-                <img 
-                  src={techImage} 
-                  alt="AI Computer Vision Technology" 
-                  className="w-full h-auto rounded-2xl max-h-96 object-cover"
+                <img
+                  src={techImage}
+                  alt="AI Computer Vision Technology"
+                  className="w-full h-auto rounded-2xl max-h-96 mobile-image object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent rounded-2xl" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-2xl font-bold gradient-text mb-2">Real-time Computer Vision</h3>
-                  <p className="text-gray-300">Advanced AI algorithms detect anomalies with precision</p>
+                  <h3 className="text-2xl font-bold gradient-text mb-2">
+                    Real-time Computer Vision
+                  </h3>
+                  <p className="text-gray-300">
+                    Advanced AI algorithms detect anomalies with precision
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 mobile-grid gap-12">
             {[
               {
                 title: "Autonomous Navigation",
@@ -323,49 +330,63 @@ function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-32 mobile-section overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
-          <img 
-            src={statsImage} 
-            alt="Business Analytics" 
+          <img
+            src={statsImage}
+            alt="Business Analytics"
             className="w-full h-full object-cover object-center opacity-20"
             style={{
-              transform: 'scale(1.2)',
-              filter: 'blur(3px)'
+              transform: "scale(1.2)",
+              filter: "blur(3px)",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/80 to-primary/60" />
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-reveal text-5xl md:text-6xl font-bold mb-6 gradient-text">
+            <h2 className="text-reveal text-5xl md:text-6xl mobile-subtitle font-bold mb-6 gradient-text">
               Proven Performance
             </h2>
             <p className="text-reveal text-xl text-gray-200 max-w-3xl mx-auto">
               Data-driven results that speak for themselves
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "99.7%", label: "Detection Accuracy", desc: "Industry-leading precision" },
-              { number: "75%", label: "Time Reduction", desc: "Faster than manual inspection" },
-              { number: "24/7", label: "Availability", desc: "Round-the-clock operations" },
-              { number: "100+", label: "Aircraft Inspected", desc: "Proven track record" },
+              {
+                number: "99.7%",
+                label: "Detection Accuracy",
+                desc: "Industry-leading precision",
+              },
+              {
+                number: "75%",
+                label: "Time Reduction",
+                desc: "Faster than manual inspection",
+              },
+              {
+                number: "24/7",
+                label: "Availability",
+                desc: "Round-the-clock operations",
+              },
+              {
+                number: "100+",
+                label: "Aircraft Inspected",
+                desc: "Proven track record",
+              },
             ].map((stat, index) => (
               <div key={index} className="text-reveal hover-3d">
                 <div className="glass p-8 rounded-3xl text-center h-full hover:bg-white/5 stat-card">
-                  <div className="text-5xl md:text-6xl font-black mb-3 gradient-text glow-text">
+                  <div className="text-5xl md:text-6xl mobile-stat font-black mb-3 gradient-text glow-text">
                     {stat.number}
                   </div>
                   <div className="text-xl font-bold text-white mb-2">
                     {stat.label}
                   </div>
-                  <div className="text-sm text-gray-300">
-                    {stat.desc}
-                  </div>
+                  <div className="text-sm text-gray-300">{stat.desc}</div>
                 </div>
               </div>
             ))}
@@ -374,24 +395,24 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative py-32 mobile-section overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
-          <img 
-            src={contactImage} 
-            alt="Business Collaboration" 
+          <img
+            src={contactImage}
+            alt="Business Collaboration"
             className="w-full h-full object-cover object-center opacity-25"
             style={{
-              transform: 'scale(1.1)',
-              filter: 'blur(2px)'
+              transform: "scale(1.1)",
+              filter: "blur(2px)",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-dark/90 via-gray-900/80 to-primary/40" />
         </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 mobile-container">
           <div className="text-center mb-16">
-            <h2 className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text">
+            <h2 className="text-reveal text-6xl md:text-7xl mobile-subtitle font-bold mb-8 gradient-text">
               Ready to Transform Your Operations?
             </h2>
             <p className="text-reveal text-xl text-gray-300 max-w-3xl mx-auto">
@@ -401,7 +422,7 @@ function App() {
           </div>
 
           <form onSubmit={handleSubmit} className="text-reveal">
-            <div className="glass p-12 rounded-3xl">
+            <div className="glass p-12 mobile-form rounded-3xl">
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <label className="block text-lg font-medium mb-3 text-gray-300">
