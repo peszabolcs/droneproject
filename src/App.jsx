@@ -255,7 +255,7 @@ function App() {
       <section className="py-32 bg-gradient-to-b from-gray-900 to-dark relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text">
+            <h2 className="text-reveal text-6xl md:text-7xl font-bold mb-8 gradient-text leading-tight" style={{lineHeight: '1.1'}}>
               Cutting-Edge Technology
             </h2>
             <p className="text-reveal text-xl text-gray-300 max-w-4xl mx-auto">
