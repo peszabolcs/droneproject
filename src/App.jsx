@@ -8,6 +8,8 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [cursorType, setCursorType] = useState('default');
+  const [hoveredElement, setHoveredElement] = useState(null);
   const heroRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +21,39 @@ function App() {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Check what element is under the cursor
+      const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+      
+      if (elementUnderCursor) {
+        const tagName = elementUnderCursor.tagName.toLowerCase();
+        const isTextElement = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div', 'a', 'label'].includes(tagName);
+        const isInputElement = ['input', 'textarea', 'button'].includes(tagName);
+        const hasTextContent = elementUnderCursor.textContent && elementUnderCursor.textContent.trim().length > 0;
+        
+        // Check if element is a button (including buttons inside other elements)
+        const buttonElement = elementUnderCursor.closest('button') || (tagName === 'button' ? elementUnderCursor : null);
+        
+        if (isInputElement || buttonElement) {
+          const targetElement = buttonElement || elementUnderCursor;
+          const rect = targetElement.getBoundingClientRect();
+          
+          setHoveredElement({
+            width: rect.width,
+            height: rect.height,
+            left: rect.left,
+            top: rect.top,
+            borderRadius: window.getComputedStyle(targetElement).borderRadius
+          });
+          setCursorType('input');
+        } else if (isTextElement && hasTextContent) {
+          setHoveredElement(null);
+          setCursorType('text');
+        } else {
+          setHoveredElement(null);
+          setCursorType('default');
+        }
+      }
     };
 
     const handleScroll = () => {
@@ -90,18 +125,42 @@ function App() {
     console.log("Form submitted:", formData);
   };
 
+  const handleDiscoverClick = () => {
+    const missionSection = document.querySelector('section:nth-of-type(2)');
+    if (missionSection) {
+      missionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-dark text-white overflow-hidden">
       {/* Animated cursor follower */}
       <div
-        className="fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
+        className="fixed pointer-events-none z-50 mix-blend-difference"
         style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          background:
-            "radial-gradient(circle, rgba(0,102,255,0.8) 0%, rgba(0,204,255,0.4) 100%)",
-          borderRadius: "50%",
-          transition: "all 0.1s ease",
+          left: cursorType === 'input' && hoveredElement 
+            ? hoveredElement.left 
+            : mousePosition.x - (cursorType === 'text' ? 1 : 12),
+          top: cursorType === 'input' && hoveredElement 
+            ? hoveredElement.top 
+            : mousePosition.y - (cursorType === 'text' ? 12 : 12),
+          width: cursorType === 'input' && hoveredElement 
+            ? hoveredElement.width 
+            : cursorType === 'text' ? '2px' : '24px',
+          height: cursorType === 'input' && hoveredElement 
+            ? hoveredElement.height 
+            : cursorType === 'text' ? '24px' : '24px',
+          background: cursorType === 'text' 
+            ? "linear-gradient(to bottom, rgba(0,102,255,0.9) 0%, rgba(0,204,255,0.6) 100%)"
+            : cursorType === 'input'
+            ? "rgba(0,102,255,0.1)"
+            : "radial-gradient(circle, rgba(0,102,255,0.8) 0%, rgba(0,204,255,0.4) 100%)",
+          borderRadius: cursorType === 'input' && hoveredElement 
+            ? hoveredElement.borderRadius 
+            : cursorType === 'text' ? '1px' : '50%',
+          border: cursorType === 'input' ? '2px solid rgba(0,102,255,0.6)' : 'none',
+          transition: "all 0.15s ease",
+          transform: 'scale(1)',
         }}
       />
 
@@ -146,15 +205,15 @@ function App() {
             }`}
           >
             <h1 className="text-7xl md:text-9xl mobile-title font-black mb-8 leading-tight">
-              <span className="gradient-text glow-text">EyeSky</span>
+              <span className="gradient-text glow-text">FlightCore</span>
               <br />
               <span className="text-4xl md:text-6xl mobile-subtitle font-light text-gray-300">
-                Autonomous Aircraft Inspection
+                Dynamic Solutions
               </span>
             </h1>
 
             <p className="text-2xl md:text-3xl mobile-text text-gray-300 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
-              Revolutionary AI-powered drone technology that transforms aviation
+              Revolutionary RWS-700 (Runway Watch System) that transforms aviation
               safety through
               <span className="gradient-text font-semibold">
                 {" "}
@@ -163,8 +222,11 @@ function App() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="morph-btn glass px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:scale-105 transition-all duration-300">
-                <span className="relative z-10">Discover EyeSky</span>
+              <button 
+                onClick={handleDiscoverClick}
+                className="morph-btn glass px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:scale-105 transition-all duration-300"
+              >
+                <span className="relative z-10">Discover RWS-700</span>
               </button>
               <button className="morph-btn border-2 border-white/30 px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:bg-white/10 transition-all duration-300">
                 Watch Demo
@@ -416,7 +478,7 @@ function App() {
               Ready to Transform Your Operations?
             </h2>
             <p className="text-reveal text-xl text-gray-300 max-w-3xl mx-auto">
-              Join the future of aviation safety. Partner with EyeSky to
+              Join the future of aviation safety. Partner with FlightCore Dynamic Solutions to
               experience the next generation of aircraft inspection technology.
             </p>
           </div>
@@ -482,10 +544,10 @@ function App() {
             <p className="text-gray-400">
               Or reach us directly at{" "}
               <a
-                href="mailto:hello@eyesky.ai"
+                href="mailto:info@flightcoreds.com"
                 className="gradient-text font-semibold hover:underline"
               >
-                hello@eyesky.ai
+                info@flightcoreds.com
               </a>
             </p>
           </div>
@@ -495,7 +557,7 @@ function App() {
       {/* Footer */}
       <footer className="py-12 bg-gray-900 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="text-3xl font-bold gradient-text mb-4">EyeSky</div>
+          <div className="text-3xl font-bold gradient-text mb-4">FlightCore Dynamic Solutions</div>
           <p className="text-gray-400 text-lg">
             The future of autonomous aircraft inspection is here.
           </p>
