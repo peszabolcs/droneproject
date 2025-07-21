@@ -228,9 +228,14 @@ function App() {
               >
                 <span className="relative z-10">Discover RWS-700</span>
               </button>
-              <button className="morph-btn border-2 border-white/30 px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:bg-white/10 transition-all duration-300">
+              <a 
+                href="https://youtu.be/dwLgfMXLZiY" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="morph-btn border-2 border-white/30 px-12 py-6 mobile-btn rounded-2xl font-bold text-xl hover:bg-white/10 transition-all duration-300 inline-block"
+              >
                 Watch Demo
-              </button>
+              </a>
             </div>
           </div>
         </div>
