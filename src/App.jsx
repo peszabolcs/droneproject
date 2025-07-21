@@ -31,8 +31,8 @@ function App() {
         const isInputElement = ['input', 'textarea', 'button'].includes(tagName);
         const hasTextContent = elementUnderCursor.textContent && elementUnderCursor.textContent.trim().length > 0;
         
-        // Check if element is a button (including buttons inside other elements)
-        const buttonElement = elementUnderCursor.closest('button') || (tagName === 'button' ? elementUnderCursor : null);
+        // Check if element is a button or link (including buttons/links inside other elements)
+        const buttonElement = elementUnderCursor.closest('button, a') || (['button', 'a'].includes(tagName) ? elementUnderCursor : null);
         
         if (isInputElement || buttonElement) {
           const targetElement = buttonElement || elementUnderCursor;
